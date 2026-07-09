@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Development Index (HDI) Prediction</title>
+    <meta name="description" content="Predict Human Development Index (HDI) using linear regression machine learning models and explore global well-being.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-earth-americas"></i> HDI Predictor
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/Prediction" class="btn-predict-nav">Predict HDI</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Predicting Global <span>Well-Being</span></h1>
+                <p>
+                    The Human Development Index (HDI) is a summary measure of average achievement in key dimensions of human development: a long and healthy life, being knowledgeable, and having a decent standard of living.
+                </p>
+                
+                <div class="hdi-badges">
+                    <div class="badge">
+                        <i class="fa-solid fa-heart-pulse"></i> Long & Healthy Life
+                    </div>
+                    <div class="badge">
+                        <i class="fa-solid fa-graduation-cap"></i> Quality Education
+                    </div>
+                    <div class="badge">
+                        <i class="fa-solid fa-coins"></i> Decent Standard of Living
+                    </div>
+                    <div class="badge">
+                        <i class="fa-solid fa-wifi"></i> Digital Connectivity
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="/Prediction" class="btn-primary">
+                        Get Started <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="https://hdr.undp.org/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                        About UNDP HDI
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-artwork">
+                <div class="art-glow"></div>
+                <!-- Using actual trained correlation plot as premium background visual asset -->
+                <img src="{{ url_for('static', filename='images/correlation_heatmap.png') }}" alt="HDI Data Visualization" class="art-image">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SkillWallet Internship Project. Built with Flask, NumPy, Pandas, Scikit-learn, and Matplotlib.</p>
+    </footer>
+</body>
+</html>

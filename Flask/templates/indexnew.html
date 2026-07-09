@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Human Development Index (HDI)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-earth-americas"></i> HDI Predictor
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/Prediction" class="btn-predict-nav">Predict HDI</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <div class="glass-card">
+                <h2 class="card-title">HDI Predictor</h2>
+                <p class="card-subtitle">Fill in the country's development parameters to predict its Human Development Index score.</p>
+                
+                <form action="/predict" method="post" id="hdiForm">
+                    <div class="form-group">
+                        <label for="country"><i class="fa-solid fa-flag"></i> Select Country</label>
+                        <select name="Country" id="country" class="form-select" required>
+                            <option value="" disabled selected>-- Select a Country --</option>
+                            {% for encoded_val, country_name in country_options %}
+                                <option value="{{ encoded_val }}">{{ country_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="life_exp"><i class="fa-solid fa-heart-pulse"></i> Life Expectancy at Birth (Years)</label>
+                        <input type="number" step="any" name="Life expectancy" id="life_exp" class="form-input" 
+                               placeholder="Enter life expectancy rate (range 50-85)" min="50" max="85" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mean_school"><i class="fa-solid fa-user-graduate"></i> Mean Years of Schooling (Years)</label>
+                        <input type="number" step="any" name="Mean years of schooling" id="mean_school" class="form-input" 
+                               placeholder="Enter mean years of schooling (range 1-15)" min="1" max="15" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gni"><i class="fa-solid fa-money-bill-wave"></i> Gross National Income (GNI) per Capita ($)</label>
+                        <input type="number" step="any" name="Gross national income (GNI) per capita" id="gni" class="form-input" 
+                               placeholder="Enter GNI per capita (range 290-140000)" min="290" max="140000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="internet"><i class="fa-solid fa-wifi"></i> Internet Users (% of population)</label>
+                        <input type="number" step="any" name="Internet users" id="internet" class="form-input" 
+                               placeholder="Enter percentage of internet users (range 1-100)" min="1" max="100" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-block">
+                        <i class="fa-solid fa-chart-line"></i> Predict HDI Score
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SkillWallet Internship Project. Built with Flask, NumPy, Pandas, Scikit-learn, and Matplotlib.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

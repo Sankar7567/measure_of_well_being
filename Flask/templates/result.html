@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Development Index Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-earth-americas"></i> HDI Predictor
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/Prediction" class="btn-predict-nav">Predict HDI</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="result-card">
+            <div class="glass-card">
+                <h2 class="card-title">Prediction Outcome</h2>
+                <p class="card-subtitle">Based on the submitted socio-economic parameters, here is the predicted well-being status.</p>
+                
+                {% if error_msg %}
+                    <div class="cat-badge cat-low">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Error
+                    </div>
+                    <p style="margin-bottom: 2rem; color: var(--text-secondary);">{{ error_msg }}</p>
+                {% else %}
+                    <!-- Interactive Score Display -->
+                    <div class="hdi-score-ring">
+                        <span class="score-value">{{ "%.2f"|format(hdi_value) }}</span>
+                        <span class="score-label">HDI Score</span>
+                    </div>
+
+                    <!-- Category classification -->
+                    {% if hdi_category == 'Low' %}
+                        <div class="cat-badge cat-low">Low Development</div>
+                    {% elif hdi_category == 'Medium' %}
+                        <div class="cat-badge cat-medium">Medium Development</div>
+                    {% elif hdi_category == 'High' %}
+                        <div class="cat-badge cat-high">High Development</div>
+                    {% elif hdi_category == 'Very High' %}
+                        <div class="cat-badge cat-very-high">Very High Development</div>
+                    {% else %}
+                        <div class="cat-badge cat-low">Out of Range</div>
+                    {% endif %}
+
+                    <!-- Display original prediction text for backward compatibility -->
+                    <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.1rem; font-weight: 500;">
+                        {{ prediction_text }}
+                    </p>
+
+                    <!-- Feature inputs breakdown -->
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <span class="label">Country</span>
+                            <span class="value">{{ country_name }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Life Expectancy</span>
+                            <span class="value">{{ life_expectancy }} years</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Mean Years of Schooling</span>
+                            <span class="value">{{ mean_schooling }} years</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Internet Users</span>
+                            <span class="value">{{ internet_users }}%</span>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Action Button Row -->
+                <div class="action-row">
+                    <a href="/Prediction" class="btn-primary">
+                        <i class="fa-solid fa-rotate-left"></i> Run Another Prediction
+                    </a>
+                    <a href="/" class="btn-secondary">
+                        <i class="fa-solid fa-house"></i> Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SkillWallet Internship Project. Built with Flask, NumPy, Pandas, Scikit-learn, and Matplotlib.</p>
+    </footer>
+</body>
+</html>
