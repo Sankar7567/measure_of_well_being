@@ -122,7 +122,7 @@ HDI-Prediction/
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Sankar7567/measure_of_well_being.git
-   cd HDI-Prediction
+   cd meaure_of_well_being
    ```
 
 2. **Create and Activate a Virtual Environment**:
