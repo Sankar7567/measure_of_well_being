@@ -121,7 +121,7 @@ HDI-Prediction/
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Sankar7567/HDI-Prediction.git
+   git clone https://github.com/Sankar7567/measure_of_well_being.git
    cd HDI-Prediction
    ```
 
